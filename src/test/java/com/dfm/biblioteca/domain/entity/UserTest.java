@@ -8,15 +8,6 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Testes para a entidade User.
- *
- * Estes testes verificam:
- * - Criação correta de usuário válido
- * - Atribuição correta de campos
- * - Status padrão
- * - Comportamento básico da entidade
- */
 @MicronautTest
 class UserTest {
 
@@ -104,8 +95,6 @@ class UserTest {
         assertNull(userWithoutComplement.getComplement());
     }
 
-    // ===== Testes de Atribuição de Campos =====
-
     @Test
     void shouldUpdateFirstName() {
         validUser.setFirstName("Maria");
@@ -146,8 +135,6 @@ class UserTest {
         assertEquals("SP", validUser.getState());
     }
 
-    // ===== Testes de Status =====
-
     @Test
     void shouldHaveDefaultStatusAsRegular() {
         User newUser = new User();
@@ -177,8 +164,6 @@ class UserTest {
         validUser.setStatus(User.UserStatus.PERSONA_NON_GRATA);
         assertEquals(User.UserStatus.PERSONA_NON_GRATA, validUser.getStatus());
     }
-
-    // ===== Testes de Construtor =====
 
     @Test
     void shouldCreateUserWithNoArgsConstructor() {
@@ -216,8 +201,6 @@ class UserTest {
         assertEquals(User.UserStatus.REGULAR, user.getStatus());
     }
 
-    // ===== Testes de Igualdade e Identidade =====
-
     @Test
     void shouldHaveSameValuesForEqualUsers() {
         User user1 = new User();
@@ -227,9 +210,6 @@ class UserTest {
         User user2 = new User();
         user2.setFirstName("João");
         user2.setLastName("Silva");
-
-        // Lombok gera equals baseado em todos os campos
-        // Como ambos têm os mesmos valores em todos os campos, serão iguais
         assertEquals(user1, user2);
     }
 
