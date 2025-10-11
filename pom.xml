@@ -50,6 +50,12 @@
             <artifactId>micronaut-data-hibernate-jpa</artifactId>
         </dependency>
 
+        <!-- Micronaut JDBC (necessário para configurar o DataSource) -->
+        <dependency>
+            <groupId>io.micronaut.sql</groupId>
+            <artifactId>micronaut-jdbc-hikari</artifactId>
+        </dependency>
+
         <!-- Micronaut Security -->
         <dependency>
             <groupId>io.micronaut.security</groupId>
@@ -159,17 +165,28 @@
                     <source>21</source>
                     <target>21</target>
                     <annotationProcessorPaths>
+                        <!-- Lombok DEVE vir primeiro -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>1.18.30</version>
                         </path>
+                        <!-- Depois Micronaut Inject -->
                         <path>
                             <groupId>io.micronaut</groupId>
                             <artifactId>micronaut-inject-java</artifactId>
                             <version>4.5.1</version>
                         </path>
+                        <!-- Por último Micronaut Data (precisa que Lombok tenha processado antes) -->
+                        <path>
+                            <groupId>io.micronaut.data</groupId>
+                            <artifactId>micronaut-data-processor</artifactId>
+                            <version>4.8.4</version>
+                        </path>
                     </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
